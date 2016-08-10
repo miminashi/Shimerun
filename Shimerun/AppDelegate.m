@@ -8,6 +8,12 @@
 
 #import "AppDelegate.h"
 
+#import <AWSCore/AWSCore.h>
+#import <AWSCognito/AWSCognito.h>
+#import <AWSIoT/AWSIoT.h>
+
+static NSString *const kIdentityPoolId = @"";
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +23,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc]
+                                                          initWithRegionType:AWSRegionUSWest2
+                                                          identityPoolId:kIdentityPoolId];
+    
+    AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSWest2 credentialsProvider:credentialsProvider];
+    
+    [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
+    
     return YES;
 }
 

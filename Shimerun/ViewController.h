@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+#import <AWSIoT/AWSIoT.h>
+
 @interface ViewController : UIViewController
 
+@property (nonatomic) AWSIoTDataManager *iotDataManager;
+
+@property (weak, nonatomic) IBOutlet UILabel *lockStateLabel;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *lockStateUpdateActivityIndicator;
+
+- (IBAction)openButtonDidTap:(id)sender;
+- (IBAction)closeButtonDidTap:(id)sender;
 
 @end
 
